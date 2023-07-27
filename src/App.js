@@ -54,7 +54,7 @@ function App() {
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
             <Box sx={{height: "100%"}}>
-                <BrowserRouter>
+                <BrowserRouter basename="/">
                     <ThemeProvider theme={theme}>
                         <CssBaseline/>
                         <ToastContainer
