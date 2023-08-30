@@ -2,9 +2,15 @@ import { Box, Button, Typography, useTheme } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const WelcomePage = () => {
+    const token = useSelector(state => state.auth.token);
+    const navigate=useNavigate();
+    if(token){
+        navigate('/dashboard');
+    }
     const theme = useTheme();
 
     return (
