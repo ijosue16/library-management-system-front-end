@@ -31,10 +31,11 @@ const WelcomePage = () => {
                     <Link className="p-2 link-words " to="/login" >Admin/Librarian </Link>
                     <Link className="p-2 link-words " to="/teacherslogin" >Teacher</Link>
                     <Link className="p-2 link-words " to="/studentslogin" >Student</Link>
-                    <p className="m-0 text-center">Download reb books as well </p>
+                    <p className="m-0 text-center">Checkout REB/NESA Resources </p>
                     <div className="d-flex justify-content-center align-items-center gap-5 align-self-bottom link-container">
                     <a className="p-2 link-words " href="https://elearning.reb.rw/course/index.php?categoryid=13" target="_blank" rel="noopener noreferrer">O-level Books</a>
                     <a className="p-2 link-words " href="https://elearning.reb.rw/course/index.php?categoryid=32" target="_blank" rel="noopener noreferrer">A-level Books</a>
+                    <a className="p-2 link-words " href="https://www.nesa.gov.rw/1/resources?tx_filelist_filelist%5Baction%5D=list&tx_filelist_filelist%5Bcontroller%5D=File&tx_filelist_filelist%5Bpath%5D=%2Fuser_upload%2FNESA%2FRessources%2FPast_Papers%2F&cHash=3f2af0fbf49ea29ad0efc62cedc1c400" target="_blank" rel="noopener noreferrer">National exams</a>
                     </div>
                     
 

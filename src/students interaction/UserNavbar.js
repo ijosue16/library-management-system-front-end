@@ -71,6 +71,7 @@ const UserNavbar = ({studentId,userName}) => {
             >
                 <MenuItem> <a className="text-decoration-none text-white " href="https://elearning.reb.rw/course/index.php?categoryid=13" target="_blank" rel="noopener noreferrer">O-level Books</a></MenuItem>
                 <MenuItem> <a className="text-decoration-none text-white " href="https://elearning.reb.rw/course/index.php?categoryid=32" target="_blank" rel="noopener noreferrer">A-level Books</a></MenuItem>
+                <MenuItem> <a className="text-decoration-none text-white " href="https://www.nesa.gov.rw/1/resources?tx_filelist_filelist%5Baction%5D=list&tx_filelist_filelist%5Bcontroller%5D=File&tx_filelist_filelist%5Bpath%5D=%2Fuser_upload%2FNESA%2FRessources%2FPast_Papers%2F&cHash=3f2af0fbf49ea29ad0efc62cedc1c400" target="_blank" rel="noopener noreferrer">National exams</a></MenuItem>
             </Menu>
             </AppBar>
         </>
