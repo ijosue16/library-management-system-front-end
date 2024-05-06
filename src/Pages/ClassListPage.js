@@ -7,7 +7,7 @@ import {
   useGetOneClassQuery,
   useGetStudentsQuery,
 } from "../states/apiSlice";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import {
   Box,
@@ -21,7 +21,6 @@ import {
   Button,
   CircularProgress,
 } from "@mui/material";
-import Status from "../components/Status";
 import {
   ChevronRightOutlined,
   CloseOutlined,

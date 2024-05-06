@@ -94,6 +94,34 @@ const LoginPage = () => {
     }
   };
 
+  const handleDemoSubmit = async (event) => {
+    event.preventDefault();
+    setUser({email: "admin@lms.com", password: "admin123" });
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const passwordRegex = /^[a-zA-Z0-9]+$/;
+
+    const { email, password } = user;
+
+    const newErrors = {
+      email: "",
+      password: "",
+    };
+
+    const body = { email, password };
+    const response = await login({ body });
+    if (response) {
+      const { data: userData } = response;
+      const { token, data } = userData;
+      dispatch(setAuthToken(token));
+      dispatch(setUserData(data.user));
+      dispatch(setAccessibility(data.user.accessibility));
+      localStorage.setItem("token", token);
+      localStorage.setItem("profile", JSON.stringify(data.user));
+      localStorage.setItem("accessability", data.user.accessibility);
+      navigate("/dashboard");
+    }
+  };
+
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
@@ -184,6 +212,28 @@ const LoginPage = () => {
             />
           ) : (
             `Login`
+          )}
+        </Button>
+
+        <Button
+          disabled={!!isLoading}
+          variant="contained"
+          size="medium"
+          type="button"
+          onClick={handleDemoSubmit}
+          sx={{ width: "190px", alignSelf: "start" }}
+          endIcon={<LoginOutlined />}
+        >
+          {isLoading ? (
+            <RotatingLines
+              strokeColor="#FFE3A3"
+              strokeWidth="3"
+              animationDuration="0.75"
+              width="25"
+              visible={true}
+            />
+          ) : (
+            `Login as demo user`
           )}
         </Button>
         </Box>

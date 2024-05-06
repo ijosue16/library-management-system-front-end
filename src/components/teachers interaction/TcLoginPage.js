@@ -21,7 +21,7 @@ import {setAuthToken} from "../../states/authSlice";
 const TcLoginPage = () => {
     const navigate = useNavigate();
     const [showPassword, setShowPassword] = useState(false);
-    const [student, setStudent] = useState({registrationNumber: "", password: ""});
+    const [teacher, setTeacher] = useState({registrationNumber: "", password: ""});
     let teacherId = ""
     const [TeacherLogin, {isLoading, isSuccess, isError, error}] = useTeacherLoginMutation();
     const dispatch = useDispatch();
@@ -43,14 +43,14 @@ const TcLoginPage = () => {
         event.preventDefault();
     };
 
-    const handleStudentChange = (e) => {
-        setStudent({...student, [e.target.name]: e.target.value})
+    const handleTeacherChange = (e) => {
+        setTeacher({...teacher, [e.target.name]: e.target.value})
     };
 
-    const handleStudentSubmit = async (event) => {
+    const handleTeacherSubmit = async (event) => {
         event.preventDefault();
-        const body = {...student};
-        const {registrationNumber, password} = student
+        const body = {...teacher};
+        const {registrationNumber, password} = teacher
         const response = await TeacherLogin({registrationNumber, password})
 
         if (response) {
@@ -62,11 +62,30 @@ const TcLoginPage = () => {
             dispatch(setAuthToken(teacherData.token));
             navigate(`/teachers/notifications/${teacherId}`);
         }
-        // console.log(student);
-        // setStudent({ registrationNumber: "", password: "" })
+        // console.log(teacher);
+        // setTeacher({ registrationNumber: "", password: "" })
 
     };
+    const handleTeacherDemoSubmit = async (event) => {
+        event.preventDefault();
+        setTeacher({registrationNumber: "20241", password: "20241"})
+        const body = {...teacher};
+        const {registrationNumber, password} = teacher
+        const response = await TeacherLogin({registrationNumber, password})
 
+        if (response) {
+            const {data: teacherData} = response;
+            const {data: userDatata} = teacherData;
+            const {user: userInfo} = userDatata;
+            const {_id: tcId} = userInfo;
+            teacherId=tcId;
+            dispatch(setAuthToken(teacherData.token));
+            navigate(`/teachers/notifications/${teacherId}`);
+        }
+        // console.log(teacher);
+        // setTeacher({ registrationNumber: "", password: "" })
+
+    };
 
     return (
         <>
@@ -98,7 +117,7 @@ const TcLoginPage = () => {
                         type="text"
                         id="registrationNumber"
                         variant="outlined"
-                        onChange={handleStudentChange}
+                        onChange={handleTeacherChange}
                         sx={{}}
                         // error={Boolean(loginErrors.email)}
                         // helperText={loginErrors.email}
@@ -109,7 +128,7 @@ const TcLoginPage = () => {
                         required
                         fullWidth
                         // error={Boolean(loginErrors.password)}
-                        onChange={handleStudentChange}
+                        onChange={handleTeacherChange}
                         sx={{}}
                     >
                         <InputLabel htmlFor="password">Password</InputLabel>
@@ -148,9 +167,28 @@ const TcLoginPage = () => {
                         type="submit"
                         sx={{width: "100px", alignSelf: "start"}}
                         endIcon={<LoginOutlined/>}
-                        onClick={handleStudentSubmit}
+                        onClick={handleTeacherSubmit}
                     >
                         Login
+                    </Button>}
+
+                    {isLoading ? <Button
+                        variant="contained"
+                        size="medium"
+                        type="submit"
+                        sx={{width: "100px", alignSelf: "start"}}
+                        disabled
+                    >
+                        <CircularProgress size={20}/>
+                    </Button> : <Button
+                        variant="contained"
+                        size="medium"
+                        type="submit"
+                        sx={{width: "190px", alignSelf: "start"}}
+                        endIcon={<LoginOutlined/>}
+                        onClick={handleTeacherDemoSubmit}
+                    >
+                        Login as demo user
                     </Button>}
 
                 </Box>
