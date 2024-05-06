@@ -176,7 +176,7 @@ const TcLoginPage = () => {
                         variant="contained"
                         size="medium"
                         type="submit"
-                        sx={{width: "100px", alignSelf: "start"}}
+                        sx={{width: "190px", alignSelf: "start"}}
                         disabled
                     >
                         <CircularProgress size={20}/>

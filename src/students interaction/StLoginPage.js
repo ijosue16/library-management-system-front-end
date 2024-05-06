@@ -67,6 +67,27 @@ const StLoginPage = () => {
 
     };
 
+    const handleStudentDemoSubmit = async (event) => {
+        event.preventDefault();
+        setStudent({registrationNumber: "202412", password: "202412"});
+        const body = {...student};
+        const {registrationNumber, password} = student
+        const response = await StudentLogin({registrationNumber, password})
+
+        if (response) {
+            const {data: studentData} = response
+            const {data: userDatata} = studentData
+            const {user: userInfo} = userDatata
+            const {_id: stId, name: Name} = userInfo
+            studentId = stId
+            dispatch(setAuthToken(studentData.token));
+            navigate(`/students/notifications/${studentId}`);
+        }
+        // console.log(student);
+        // setStudent({ registrationNumber: "", password: "" })
+
+    };
+
 
     return (
         <>
@@ -151,6 +172,25 @@ const StLoginPage = () => {
                         onClick={handleStudentSubmit}
                     >
                         Login
+                    </Button>}
+
+                    {isLoading ? <Button
+                        variant="contained"
+                        size="medium"
+                        type="button"
+                        sx={{width: "190px", alignSelf: "start"}}
+                        disabled
+                    >
+                        <CircularProgress size={20}/>
+                    </Button> : <Button
+                        variant="contained"
+                        size="medium"
+                        type="button"
+                        sx={{width: "190px", alignSelf: "start"}}
+                        endIcon={<LoginOutlined/>}
+                        onClick={handleStudentDemoSubmit}
+                    >
+                        Login as demo user
                     </Button>}
 
                 </Box>
